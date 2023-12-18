@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vector Simulation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="kapsayici">
+        <div id="vectorContainer">
+            <div id="vector" class="draggable"></div>
+
+            <div id="aci1">145</div>
+        </div>
+        <div id="maximumAlanaUlasildi">Maximum Alana Ulaşıldı!!!</div>
+
+        <div id="vectorContainer2">
+            <div id="vector2" class="draggable"></div>
+            <div id="vectorSu" class="draggable">Su Yüksekliği</div>
+        </div>
+
+        <div id="vectorContainer3">
+            <div id="vector3" class="draggable"></div>
+
+            <div id="aci2">35</div>
+        </div>
+    </div>
+
+
+
+    <div id="belowPart">
+        <form>
+            <label for="kenarlar">Kenarların her birinin birim uzunluğu: </label>
+            <input type="text" id="kenarlar" name="kenarlar" required> </input>
+            <button type="submit" id="kenarlarButon">Submit</button>
+        </form>
+        <div id="guncelUzunluk">Güncel Uzunluk: <span id="guncelUzunlukValue">360</span></div>
+        <div id="suYuksekligi">Su Yüksekliği: h = <span id="suYuksekligiValue">0</span></div>
+        <div id="anlikAlan">Anlık su kanalının alanı: <span id="anlikAlanValue">0</span></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
