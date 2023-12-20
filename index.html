@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 
 <head>
     <meta charset="UTF-8">
@@ -20,7 +20,7 @@
 
         <div id="vectorContainer2">
             <div id="vector2" class="draggable"></div>
-            <div id="vectorSu" class="draggable">Su Yüksekliği</div>
+            <!-- <div id="vectorSu" class="draggable">Su Yüksekliği</div> -->
             <div id="vector2yazi">700</div>
         </div>
 
@@ -32,13 +32,21 @@
     </div>
 
 
-
     <div id="belowPart">
-        <form>
+
+        <form id="form1">
             <label for="kenarlar">Kenarların her birinin birim uzunluğu: </label>
             <input type="text" id="kenarlar" name="kenarlar" required> </input>
             <button type="submit" id="kenarlarButon">Submit</button>
         </form>
+
+        <form id="form2">
+            <label for="taban">Taban Uzunluğu: </label>
+            <input type="text" id="taban" name="taban" required> </input>
+            <button type="submit" id="tabanAyarlaButon">Submit</button>
+        </form>
+
+
         <div id="guncelUzunluk">Kolların Her Birinin Uzunluğu: <span id="guncelUzunlukValue">360</span></div>
         <div id="suYuksekligi">Maximum Su Yüksekliği: h = <span id="suYuksekligiValue">0</span></div>
         <div id="anlikAlan">Anlık su kanalının alanı: <span id="anlikAlanValue">20543</span></div>
@@ -46,5 +54,4 @@
 
     <script src="script.js"></script>
 </body>
-
 </html>
