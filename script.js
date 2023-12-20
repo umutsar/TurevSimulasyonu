@@ -4,19 +4,23 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     makeDraggable('vector', 1);
-    suCizgisi('vectorSu');
+    // suCizgisi('vectorSu');
 });
-
 const vector = document.getElementById('vector');
 const vector3 = document.getElementById('vector3');
 const vectorSu = document.getElementById('vectorSu');
 const aci2 = document.getElementById('aci2');
 const guncelUzunlukValue = document.getElementById('guncelUzunlukValue');
 const anlikAlan = document.getElementById('anlikAlan');
-const anlikAlanValue = document.getElementById('anlikAlanValue')
-const maximumAlanaUlasildi = document.getElementById('maximumAlanaUlasildi')
-const suYuksekligiValue = document.getElementById('suYuksekligiValue')
+const anlikAlanValue = document.getElementById('anlikAlanValue');
+const maximumAlanaUlasildi = document.getElementById('maximumAlanaUlasildi');
+const suYuksekligiValue = document.getElementById('suYuksekligiValue');
+const kenarlar = document.getElementById('kenarlar');
+const vector2yazi = document.getElementById('vector2yazi');
+const tabanAyarlaButon = document.getElementById('tabanAyarlaButon')
+const taban = document.getElementById('taban');
 
+let kök, kök1, kök2, tureveGoreAlan, tabanValue;
 // Fonksiyonlar
 
 function sin(dereceSin) {
@@ -29,11 +33,10 @@ function cos(dereceCos) {
     return Math.cos(radyanCos);
 }
 
-let kök, kök1, kök2, tureveGoreAlan;
-
-function turevHesapla(taban, kenar) {
-    kök1 = -(taban + Math.sqrt((taban ** 2) + 8 * (kenar ** 2))) / 4
-    kök2 = -(taban - Math.sqrt((taban ** 2) + 8 * (kenar ** 2))) / 4
+function turevHesapla(kenar) {
+    tabanValue = parseInt(vector2yazi.innerText);
+    kök1 = -(tabanValue + Math.sqrt((tabanValue ** 2) + 8 * (kenar ** 2))) / 4
+    kök2 = -(tabanValue - Math.sqrt((tabanValue ** 2) + 8 * (kenar ** 2))) / 4
     if (kök1 <= kök2) {
         kök = kök2;
     }
@@ -41,9 +44,11 @@ function turevHesapla(taban, kenar) {
         kök = kök1;
     }
 
-    tureveGoreAlan = parseInt(String((700 + kök) * (Math.sqrt(kenar ** 2 - kök ** 2))).slice(0, 5));
+    tureveGoreAlan = parseInt((tabanValue + kök) * (Math.sqrt(kenar ** 2 - kök ** 2)));
+    
 }
 
+let updateAngleIkinciParametre = 35;
 
 function makeDraggable(id, elementId) {
     const vector = document.getElementById(id);
@@ -54,6 +59,7 @@ function makeDraggable(id, elementId) {
     vector.addEventListener('mousedown', (e) => {
         isDragging = true;
     });
+
 
     document.addEventListener('mousemove', (e) => {
         if (isDragging) {
@@ -68,7 +74,9 @@ function makeDraggable(id, elementId) {
             vector.style.transform = `rotate(${degrees}deg)`;
             vector3.style.transform = `rotate(${180 - degrees}deg)`;
 
-            updateAngle(elementId, degrees.toFixed(2));
+            updateAngle(degrees.toFixed(2));
+
+            updateAngleIkinciParametre = degrees.toFixed(2)
         }
     });
 
@@ -85,8 +93,8 @@ function varsayilanPozisyonaAyarla(id) {
 }
 
 let anlikSuYuksekligi;
-function updateAngle(elementId, angle) {
-    let aci = document.getElementById(`aci${elementId}`);
+function updateAngle(angle) {
+    let aci = document.getElementById("aci1");
     if (angle) {
         let parsedAngle = parseInt(angle);
 
@@ -103,32 +111,26 @@ function updateAngle(elementId, angle) {
             vector.innerHTML = `${360 - parsedAngle}<span class="dereceIsareti">°</span>`;
             vector3.innerHTML = `${180 + parsedAngle}<span class="dereceIsareti">°</span>`;
         }
-        if (parseInt(aci2.innerText) == 45) {
-            maximumAlanaUlasildi.style.display = 'block'
-        }
-        else {
-            maximumAlanaUlasildi.style.display = 'none'
-        }
 
 
 
-        let alan = parseInt(String((parseInt(kenarUzunlugu) * sin(180 + parsedAngle) * 700) +
-            (parseInt(kenarUzunlugu) ** 2 * sin(180 + parsedAngle) * cos(180 + parsedAngle))).slice(0, 5));
+        turevHesapla(parseInt(kenarUzunlugu))
+        
+        let alan = (parseInt(kenarUzunlugu) * sin(180 + parsedAngle) * tabanValue) +
+            (parseInt(kenarUzunlugu) ** 2 * sin(180 + parsedAngle) * cos(180 + parsedAngle));
 
-
+        console.log(parsedAngle)
         anlikAlanValue.innerText = `${alan}`;
-        turevHesapla(700, parseInt(kenarUzunlugu))
-        console.log(tureveGoreAlan)
 
-        if (Math.abs(alan - tureveGoreAlan) < 20) {
+        if (Math.abs(alan - tureveGoreAlan) < 50) {
             maximumAlanaUlasildi.style.display = 'block'
         }
         else {
             maximumAlanaUlasildi.style.display = 'none'
         }
-        console.log(alan, tureveGoreAlan)
-        anlikSuYuksekligi = `${String(parseInt(kenarUzunlugu) * sin(180 + parsedAngle)).slice(0, 6)}`
+        anlikSuYuksekligi = `${parseInt(kenarUzunlugu) * sin(180 + parsedAngle)}`
         suYuksekligiValue.innerText = anlikSuYuksekligi;
+        console.log(alan, Math.abs(alan - tureveGoreAlan), tureveGoreAlan)
     }
 }
 
@@ -167,7 +169,7 @@ function suCizgisi(id) {
                 }
 
 
-                console.log(yFixed)
+                // console.log(yFixed)
             }
         }
 
@@ -184,8 +186,7 @@ let kenarUzunlugu = "360";
 
 document.getElementById('kenarlarButon').addEventListener('click', function (event) {
     event.preventDefault();
-
-    let kenarlar = document.getElementById('kenarlar');
+    maximumAlanaUlasildi.style.display = 'none'
     kenarUzunlugu = kenarlar.value;
     guncelUzunlukValue.innerText = kenarUzunlugu
 
@@ -201,10 +202,20 @@ document.getElementById('kenarlarButon').addEventListener('click', function (eve
     vector.style.width = kenarUzunlugu + 'px';
     vector3.style.width = kenarUzunlugu + 'px';
 
-    vectorSu.style.width = `${kenarUzunlugu * 2 + 600}px`;
-    vectorSu.style.left = `calc(50% - ${(kenarUzunlugu * 2 + 600) / 2}px)`;
+    // vectorSu.style.width = `${kenarUzunlugu * 2 + 600}px`;
+    // vectorSu.style.left = `calc(50% - ${(kenarUzunlugu * 2 + 600) / 2}px)`;
 
     kenarlar.value = ""
+});
+
+
+tabanAyarlaButon.addEventListener('click', function (event) {
+    event.preventDefault();
+    maximumAlanaUlasildi.style.display = 'none'
+    vector2yazi.innerText = `${taban.value}`
+    tabanValue = parseInt(`${taban.value}`);
+    
+    console.log(tabanValue)
 });
 
 // H = Hipotenüs x Sinüs
