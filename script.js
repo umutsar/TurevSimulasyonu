@@ -2,10 +2,7 @@
 // CONTACT@UMUTSAR.COM
 // .MATH111 CALCULUS PROJECT, Lecturer: Assoc. Prof. Dr. Ece Yetkin Celikel
 
-document.addEventListener('DOMContentLoaded', () => {
-    makeDraggable('vector', 1);
-    // suCizgisi('vectorSu');
-});
+
 const vector = document.getElementById('vector');
 const vector3 = document.getElementById('vector3');
 const vectorSu = document.getElementById('vectorSu');
@@ -21,7 +18,14 @@ const tabanAyarlaButon = document.getElementById('tabanAyarlaButon')
 const taban = document.getElementById('taban');
 
 let kök, kök1, kök2, tureveGoreAlan, tabanValue;
+
+
 // Fonksiyonlar
+
+document.addEventListener('DOMContentLoaded', () => {
+    makeDraggable('vector', 1);
+});
+
 
 function sin(dereceSin) {
     let radyanSin = (parseInt(dereceSin) * Math.PI) / 180;
@@ -33,6 +37,7 @@ function cos(dereceCos) {
     return Math.cos(radyanCos);
 }
 
+// Taban uzunluğu ve kenarların birinin uzunluğu ile maximum kesit alanı bulma fonkisyonu.
 function turevHesapla(kenar) {
     tabanValue = parseInt(vector2yazi.innerText);
     kök1 = -(tabanValue + Math.sqrt((tabanValue ** 2) + 8 * (kenar ** 2))) / 4
@@ -45,16 +50,13 @@ function turevHesapla(kenar) {
     }
 
     tureveGoreAlan = parseInt((tabanValue + kök) * (Math.sqrt(kenar ** 2 - kök ** 2)));
-    
 }
 
-let updateAngleIkinciParametre = 35;
 
-function makeDraggable(id, elementId) {
-    const vector = document.getElementById(id);
+function makeDraggable() {
     let isDragging = false;
 
-    varsayilanPozisyonaAyarla(id);
+    varsayilanPozisyonaAyarla();
 
     vector.addEventListener('mousedown', (e) => {
         isDragging = true;
@@ -75,8 +77,6 @@ function makeDraggable(id, elementId) {
             vector3.style.transform = `rotate(${180 - degrees}deg)`;
 
             updateAngle(degrees.toFixed(2));
-
-            updateAngleIkinciParametre = degrees.toFixed(2)
         }
     });
 
@@ -85,10 +85,10 @@ function makeDraggable(id, elementId) {
     });
 }
 
-function varsayilanPozisyonaAyarla(id) {
+function varsayilanPozisyonaAyarla() {
     let defaultAngle = -145;
 
-    document.getElementById(id).style.transform = `rotate(${defaultAngle}deg)`;
+    vector.style.transform = `rotate(${defaultAngle}deg)`;
     vector3.style.transform = `rotate(${180 - defaultAngle}deg)`;
 }
 
@@ -115,7 +115,7 @@ function updateAngle(angle) {
 
 
         turevHesapla(parseInt(kenarUzunlugu))
-        
+
         let alan = (parseInt(kenarUzunlugu) * sin(180 + parsedAngle) * tabanValue) +
             (parseInt(kenarUzunlugu) ** 2 * sin(180 + parsedAngle) * cos(180 + parsedAngle));
 
@@ -214,7 +214,7 @@ tabanAyarlaButon.addEventListener('click', function (event) {
     maximumAlanaUlasildi.style.display = 'none'
     vector2yazi.innerText = `${taban.value}`
     tabanValue = parseInt(`${taban.value}`);
-    
+
     console.log(tabanValue)
 });
 
