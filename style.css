@@ -13,7 +13,6 @@ body {
     background-color: rgb(255, 162, 0) !important;
 }
 
-
 #kapsayici {
     position: relative;
     width: 100%;
@@ -21,7 +20,6 @@ body {
     justify-content: center;
     height: 100%;
     margin-top: 30px;
-
 }
 
 /*Vektör Parent'ları*/
@@ -30,7 +28,9 @@ body {
     display: inline-block;
     width: 700px;
     height: 700px;
-    border: 2px solid red;
+    border-left: 2px solid blue;
+    border-bottom: 2px solid blue;
+    border-top: 2px solid blue;
     position: absolute;
     margin-right: 700px;
 }
@@ -46,7 +46,9 @@ body {
     display: inline-block;
     width: 700px;
     height: 700px;
-    border: 2px solid blue;
+    border-right: 2px solid blue;
+    border-bottom: 2px solid blue;
+    border-top: 2px solid blue;
     position: absolute;
     margin-left: 700px;
 }
@@ -125,9 +127,24 @@ body {
 }
 
 
-#belowPart form {
+#belowPart #form1 {
     position: absolute;
-    top: 32px;
+    top: 10px;
+    color: #FF9800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    background-color: #5F8670;
+    font-size: 32px;
+    left: 46px;
+}
+
+#belowPart #form2 {
+    position: absolute;
+    top: 52px;
+    right: 90px;
     color: #FF9800;
     display: flex;
     align-items: center;
@@ -139,10 +156,10 @@ body {
 }
 
 
-
 #belowPart input {
     font-size: 26px;
     height: 20px;
+    width: 100px;
     background-color: #FFE382;
     padding-top: 4px;
     padding-bottom: 4px;
@@ -159,21 +176,21 @@ body {
 #guncelUzunluk {
     color: #B80000;
     position: absolute;
-    top: 70px;
+    top: 90px;
     left: 35%;
 }
 
 #suYuksekligi {
     color: #820300;
     position: absolute;
-    top: 110px;
+    top: 130px;
     left: 35%;
 }
 
 #anlikAlan {
     color: #FCE09B;
     position: absolute;
-    top: 150px;
+    top: 170px;
     left: 35%;
 }
 
