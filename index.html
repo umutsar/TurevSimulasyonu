@@ -32,7 +32,6 @@
         </div>
     </div>
 
-
     <div id="belowPart">
 
         <form id="form1">
@@ -49,10 +48,33 @@
 
 
         <div id="guncelUzunluk">Kolların Her Birinin Uzunluğu: <span id="guncelUzunlukValue">360</span></div>
-        <div id="suYuksekligi">Maximum Su Yüksekliği: h = <span id="suYuksekligiValue">0</span></div>
+        <div id="suYuksekligi">Maximum Su Yüksekliği: h = <span id="suYuksekligiValue">206.6933421134602</span></div>
         <div id="anlikAlan">Anlık su kanalının alanı: <span id="anlikAlanValue">20543</span></div>
     </div>
 
+    <div id="chatBotParent">
+        <div id="chatBot">
+            <div id="messageContainer">
+                <div id="dynamic_message">
+                    <br>
+                    <div>Bot: Merhaba, chatbota hoşgeldiniz. İstediklerinizi birkaç cümle ile
+                        açıklayabilirsiniz.<br><br></div>
+                    <p id="bot_message">
+
+                    </p>
+                </div>
+            </div>
+
+            <div id="chatBotAsagi">
+                <label for="userInput"></label>
+                <input type="text" id="userInput" name="userInput">
+                <button onclick="sendMessage()">Gönder</button>
+            </div>
+        </div>
+        <button id="chatbot-button">Chatbot</button>
+    </div>
+    <script src="chatbot.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>
