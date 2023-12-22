@@ -1,3 +1,8 @@
+
+* {
+    font-family: 'Gill Sans', sans-serif;
+}
+
 body {
     background-color: rgb(187, 187, 187);
     margin: 0;
@@ -213,4 +218,95 @@ body {
 
 .dereceIsareti {
     font-size: 28px;
+}
+
+/* *********************************** */
+
+#chatBotParent {
+    position: absolute;
+    width: 30vh;
+    height: 30vh;
+    bottom: 200px;
+    right: 30px;
+}
+
+#chatBot {
+    display: none;
+    position: relative;
+    background-color: rgb(0, 188, 185);
+    border-radius: 16px;
+}
+
+#chatBotAsagi {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 4px;
+}
+
+#chatBotAsagi input {
+    border-radius: 8px;
+    display: inline;
+    height: 24px;
+    width: 70%;
+    margin: 0;
+    padding: 0;
+    margin-left: 6px;
+}
+
+#chatBotAsagi button {
+    border-radius: 6px;
+    display: inline;
+    height: 30px;
+    width: 20%;
+    margin: 0;
+    padding: 0;
+}
+
+/* ******************************** */
+#messageContainer {
+    height: 300px;
+    overflow-y: scroll;
+}
+
+#dynamic_message {
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+.message {
+    margin-bottom: 10px;
+}
+
+.message p {
+    margin: 0;
+    padding: 5px;
+}
+
+.message .userInput {
+    font-weight: bold;
+    color: blue;
+}
+
+.message .content {
+    color: black;
+}
+
+
+#chatbot-button {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: rgb(0, 188, 185);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
