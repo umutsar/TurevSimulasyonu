@@ -48,7 +48,6 @@ function turevHesapla(kenar) {
     }
 
     tureveGoreAlan = Number((tabanValue + kök) * (Math.sqrt(kenar ** 2 - kök ** 2)));
-    console.log(tureveGoreAlan)
 }
 
 
@@ -100,10 +99,10 @@ function updateAngle(angle) {
 
         if (parsedAngle < 0) {
             aci.innerHTML = `${-Number(parsedAngleFixed)}<span class="dereceIsareti">°</span>`;
-            aci2.innerHTML = `${180 + Number(parsedAngleFixed)}<span class="dereceIsareti">°</span>`;
+            aci2.innerHTML = `${(180 + Number(parsedAngleFixed)).toFixed(1)}<span class="dereceIsareti">°</span>`;
 
             vector.innerHTML = `${-Number(parsedAngleFixed)}<span class="dereceIsareti">°</span>`;
-            vector3.innerHTML = `${180 + Number(parsedAngleFixed)}<span class="dereceIsareti">°</span>`;
+            vector3.innerHTML = `${(180 + Number(parsedAngleFixed)).toFixed(1)}<span class="dereceIsareti">°</span>`;
         } else {
             aci.innerHTML = `${360 - Number(parsedAngleFixed)}<span class="dereceIsareti">°</span>`;
             aci2.innerHTML = `${180 + Number(parsedAngleFixed)}<span class="dereceIsareti">°</span>`;
@@ -127,11 +126,13 @@ function updateAngle(angle) {
         if (alanAlt <= alan && alanUst <= alan) {
             maximumAlanaUlasildi.style.display = 'block'
             anlikAlanValue.innerText = `${tureveGoreAlan}`
+            anlikAlanValue.style.color = "orange"
         }
 
         else {
             maximumAlanaUlasildi.style.display = 'none'
             anlikAlanValue.innerText = `${alan}`;
+            anlikAlanValue.style.color = "#FCE09B"
         }
 
 
@@ -144,7 +145,7 @@ function updateAngle(angle) {
     }
 }
 
-// Su Çizgisi Ayarları
+// Su Çizgisi Ayarları Sorunlar çözülünce sayfaya eklenecek. 
 
 function suCizgisi() {
     const container = vector.parentElement;
@@ -222,3 +223,26 @@ tabanAyarlaButon.addEventListener('click', function (event) {
     tabanValue = Number(`${taban.value}`);
     taban.value = ""
 });
+
+
+document.addEventListener("setDefault", () => {
+    guncelUzunlukValue.innerText = "360";
+    suYuksekligiValue.innerText = "206.6933421134602";
+    anlikAlanValue.innerText = "20543"
+    aci1.innerHTML = `145 <span class="dereceIsareti">°</span>`
+    aci2.innerHTML = `35 <span class="dereceIsareti">°</span>`
+    vector.innerHTML = `145 <span class="dereceIsareti">°</span>`
+    vector3.innerHTML = `35 <span class="dereceIsareti">°</span>`
+    vector.style.width = '360px';
+    vector3.style.width = '360px';
+    vector2yazi.innerText = "700"
+    varsayilanPozisyonaAyarla()
+})  
+
+// document.addEventListener("setKenar", () => {
+//     let gelenKenar = localStorage.getItem("gelenKenar");
+//     console.log(gelenKenar)
+//     vector.style.width = `${gelenKenar}px`;
+//     vector3.style.width = `${gelenKenar}px`;
+//     guncelUzunlukValue.innerText = `${gelenKenar}`
+// })  
